@@ -19,24 +19,10 @@ DATA = {
     # можете добавить свои рецепты ;)
 }
 
-def omlet(request):
+def dish_view(request, dish: str):
     servings = int(request.GET.get('servings', 1))
     context = {
-        'recipe': {key: value * servings for key, value in DATA['omlet'].items()}
+        'recipe': {key: value * servings for key, value in DATA.get(dish).items()}
     }
     return render(request, 'calculator/index.html', context)
 
-def pasta(request):
-    servings = int(request.GET.get('servings', 1))
-    context = {
-        'recipe': {key: value * servings for key, value in DATA['pasta'].items()}
-    }
-    return render(request, 'calculator/index.html', context)
-
-
-def buter(request):
-    servings = int(request.GET.get('servings', 1))
-    context = {
-        'recipe': {key: value * servings for key, value in DATA['buter'].items()}
-    }
-    return render(request, 'calculator/index.html', context)
