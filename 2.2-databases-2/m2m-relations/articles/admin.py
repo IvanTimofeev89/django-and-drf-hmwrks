@@ -14,6 +14,8 @@ class ScopeInlineFormset(BaseInlineFormSet):
             raise ValidationError('Только один тэг может быть основным')
         elif main_flags.count(True) == 0:
             raise ValidationError('Выберите основной тэг')
+        elif main_flags[0] is not True:
+            raise ValidationError('Основной тег обязательно указывается первым')
         return super().clean()  # вызываем базовый код переопределяемого метода
 
 class ScopeInline(admin.TabularInline):
