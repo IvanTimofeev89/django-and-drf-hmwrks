@@ -14,3 +14,7 @@ class CourseFilter(filters.FilterSet):
     class Meta:
         model = Course
         fields = ("id", "name", )
+
+
+    def custom_filter(self, queryset, name, value):
+        return queryset.filter(**{name: value})
